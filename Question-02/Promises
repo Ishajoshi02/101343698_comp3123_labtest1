@@ -1,0 +1,35 @@
+// Define a promise that resolves after 500ms with a success message
+function resolvedPromise() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({ message: 'Success! The operation completed after a short delay.' });
+        }, 500);  // Wait for 500ms before resolving
+    });
+}
+
+// Define a promise that rejects after 500ms with an error message
+function rejectedPromise() {
+    return new Promise((_, reject) => {
+        setTimeout(() => {
+            reject({ error: 'Oops! Something went wrong after a short delay.' });
+        }, 500);  // Wait for 500ms before rejecting
+    });
+}
+
+// Handling the resolvedPromise
+resolvedPromise()
+    .then((successMessage) => {
+        console.log(successMessage);  // Output: { message: 'Success! The operation completed...' }
+    })
+    .catch((errorMessage) => {
+        console.error(errorMessage);  // If there's an error (unlikely here), it will be logged
+    });
+
+// Handling the rejectedPromise
+rejectedPromise()
+    .then((successMessage) => {
+        console.log(successMessage);  // If somehow it resolves (unlikely here), log success
+    })
+    .catch((errorMessage) => {
+        console.error(errorMessage);  // Output: { error: 'Oops! Something went wrong...' }
+    });
